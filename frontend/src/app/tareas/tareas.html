@@ -1,0 +1,21 @@
+<input
+type="text"
+placeholder="Buscar tarea por descripción, estado o proyecto"
+[(ngModel)]="busquedaTarea"
+(input)="filtrarTareas()"
+/>
+<table>
+
+<tr>
+    <th>ID</th>
+    <th>Descripción</th>
+    <th>Estado</th>
+    <th>Proyecto</th>
+</tr>
+  <tr *ngFor="let tarea of tareasFiltradas">
+    <td>{{ tarea.id }}</td>
+    <td>{{ tarea.descripcion }}</td>
+    <td>{{ tarea.estado }}</td>
+    <td>{{ tarea.proyecto?.nombre }}</td>
+</tr>
+</table>

@@ -1,0 +1,42 @@
+<div class="dashboard-container">
+
+    <div class="topbar">
+        <h2>Sistema de Gestión de Proyectos</h2>
+        <span>Usuario autenticado</span>
+    </div>
+
+    <h1>Panel Principal</h1>
+
+    <p>Seleccione una opción para administrar el sistema</p>
+
+    <div class="menu">
+
+        <button routerLink="/clientes">
+            👥 Clientes
+        </button>
+
+        <button routerLink="/proyectos">
+            📁 Proyectos
+        </button>
+
+        <button routerLink="/tareas">
+            ✅ Tareas
+        </button>
+
+    </div>
+
+    <div class="acciones">
+
+        <button class="pdf-btn" (click)="exportarProyectosAPDF()">
+            Exportar PDF
+        </button>
+
+        <button class="logout-btn" (click)="logout()">
+            Cerrar sesión
+        </button>
+
+    </div>
+
+</div>
+
+ 

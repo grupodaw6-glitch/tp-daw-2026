@@ -1,0 +1,117 @@
+<div class="proyectos-container">
+
+  <h1>Gestión de Proyectos</h1>
+
+  <div class="acciones-superiores">
+
+    <button class="btn-nuevo" (click)="mostrarFormularioNuevo()">
+      + Nuevo Proyecto
+    </button>
+
+  </div>
+
+  <input type="text" placeholder="Buscar proyecto por nombre, estado o cliente" [(ngModel)]="busquedaProyecto"
+    (input)="filtrarProyectos()" />
+
+  <table>
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th>Cliente</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let proyecto of proyectosFiltrados">
+
+        <td>{{ proyecto.id }}</td>
+
+        <td>{{ proyecto.nombre }}</td>
+
+        <td>{{ proyecto.estado }}</td>
+
+        <td>
+          {{ proyecto.cliente?.nombre || 'Proyecto interno' }}
+        </td>
+
+        <td>
+
+          <button class="btn-ver" (click)="verDetalle(proyecto.id)">
+            Ver Detalle
+          </button>
+
+          <button class="btn-editar" (click)="editarProyecto(proyecto.id)">
+            Editar
+          </button>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <!-- Formulario Crear / Editar -->
+
+  <div *ngIf="mostrarFormulario" class="detalle-card">
+
+    <h2>Proyecto</h2>
+
+    <input type="text" placeholder="Nombre del proyecto" [(ngModel)]="nuevoProyecto.nombre" />
+
+    <br><br>
+
+  <input type="number" placeholder="ID Cliente" [(ngModel)]="nuevoProyecto.idCliente" />
+
+    <br><br>
+
+    <button class="btn-guardar" (click)="guardarProyecto()">
+      Guardar
+    </button>
+
+  </div>
+
+
+
+  <div *ngIf="proyectoSeleccionado" class="detalle-card">
+
+    <h2>Detalle del Proyecto</h2>
+
+    <p>
+      <strong>Nombre:</strong>
+      {{ proyectoSeleccionado.nombre }}
+    </p>
+
+    <p>
+      <strong>Estado:</strong>
+      {{ proyectoSeleccionado.estado }}
+    </p>
+
+    <p>
+      <strong>Cliente:</strong>
+      {{ proyectoSeleccionado.cliente }}
+    </p>
+
+    <h3>Tareas</h3>
+
+    <ul>
+
+      <li *ngFor="let tarea of proyectoSeleccionado.tareas">
+
+        {{ tarea.descripcion }}
+        -
+        {{ tarea.estado }}
+
+      </li>
+
+    </ul>
+
+  </div>
+
+</div>
