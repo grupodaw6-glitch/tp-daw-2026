@@ -160,7 +160,7 @@ button {
   font-weight: bold;
 }
 
-/* MODAL */
+/* MODAL CON SU CSS*/
 
 .modal {
   position: fixed;
@@ -180,7 +180,7 @@ button {
   z-index: 999;
 }
 
-/* FORMULARIO */
+/* FORMULARIO CON SU CSS*/
 
 .formulario {
   background: white;
@@ -296,4 +296,43 @@ button {
   .formulario {
     width: 90%;
   }
+}
+input[type="text"],
+input[type="number"] {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+}
+
+input::placeholder {
+  color: #999;
+}
+.btn-dashboard {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.btn-dashboard:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
 }

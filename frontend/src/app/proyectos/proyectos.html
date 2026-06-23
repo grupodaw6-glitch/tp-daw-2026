@@ -1,3 +1,24 @@
+
+
+
+<nav class="navbar">
+
+  <button routerLink="/dashboard">
+    Dashboard
+  </button>
+
+  <button routerLink="/proyectos">
+   Proyectos
+  </button>
+
+  <button routerLink="/clientes">
+   Clientes
+  </button>
+<button class="logout" (click)="logout()">
+  Salir
+</button>
+</nav>
+
 <div class="proyectos-container">
 
   <h1>Gestión de Proyectos</h1>
@@ -5,7 +26,7 @@
   <div class="acciones-superiores">
 
     <button class="btn-nuevo" (click)="mostrarFormularioNuevo()">
-      + Nuevo Proyecto
+      Crear Proyecto
     </button>
 
   </div>
@@ -49,6 +70,11 @@
             Editar
           </button>
 
+
+
+          <button class="btn-tareas" (click)="abrirTareas(proyecto.id)">
+            Tareas
+          </button>
         </td>
 
       </tr>
@@ -57,7 +83,6 @@
 
   </table>
 
-  <!-- Formulario Crear / Editar -->
 
   <div *ngIf="mostrarFormulario" class="detalle-card">
 
@@ -67,7 +92,7 @@
 
     <br><br>
 
-  <input type="number" placeholder="ID Cliente" [(ngModel)]="nuevoProyecto.idCliente" />
+    <input type="number" placeholder="ID Cliente" [(ngModel)]="nuevoProyecto.idCliente" />
 
     <br><br>
 

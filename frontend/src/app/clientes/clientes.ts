@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClientesService } from '../services/clientes';
+import { Router } from '@angular/router';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './clientes.html',
   styleUrl: './clientes.css',
 })
@@ -26,12 +28,20 @@ export class ClientesComponent implements OnInit {
     mail: '',
   };
 
-  constructor(private clientesService: ClientesService) {}
+  constructor(
+    private clientesService: ClientesService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.cargarClientes();
   }
 
+  logout(): void {
+    localStorage.removeItem('token');
+
+    this.router.navigate(['/']);
+  }
   cargarClientes(): void {
     this.clientesService.findAll().subscribe((data: any) => {
       this.clientes = data;
@@ -126,4 +136,5 @@ export class ClientesComponent implements OnInit {
   darBaja(id: number): void {
     alert('Dar de baja cliente ' + id);
   }
+  
 }

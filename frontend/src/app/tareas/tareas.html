@@ -1,3 +1,21 @@
+
+<nav class="navbar">
+
+  <button routerLink="/dashboard">
+     Dashboard
+  </button>
+
+  <button routerLink="/proyectos">
+     Proyectos
+  </button>
+
+  <button routerLink="/clientes">
+     Clientes
+  </button>
+<button class="logout" (click)="logout()">
+   Salir
+</button>
+</nav>
 <input
 type="text"
 placeholder="Buscar tarea por descripción, estado o proyecto"
@@ -6,16 +24,73 @@ placeholder="Buscar tarea por descripción, estado o proyecto"
 />
 <table>
 
-<tr>
+  <tr>
     <th>ID</th>
     <th>Descripción</th>
     <th>Estado</th>
     <th>Proyecto</th>
-</tr>
+    <th>Acciones</th>
+  </tr>
+
   <tr *ngFor="let tarea of tareasFiltradas">
+
     <td>{{ tarea.id }}</td>
+
     <td>{{ tarea.descripcion }}</td>
+
     <td>{{ tarea.estado }}</td>
+
     <td>{{ tarea.proyecto?.nombre }}</td>
-</tr>
+
+    <td>
+
+      <button class="btn-editar" (click)="editarTarea(tarea.id)">
+
+        Editar
+
+      </button>
+
+      <button class="btn-eliminar" (click)="eliminarTarea(tarea.id)">
+
+        Baja
+
+      </button>
+
+    </td>
+
+  </tr>
+
 </table>
+
+<button class="btn-nuevo" (click)="mostrarFormularioNuevo()">
+
+  Nueva Tarea
+
+</button>
+<div *ngIf="mostrarFormulario" class="modal">
+
+  <div class="modal-content">
+
+    <h2>
+      {{ editando ? 'Editar Tarea' : 'Nueva Tarea' }}
+    </h2>
+
+    <input type="text" placeholder="Descripción" [(ngModel)]="nuevaTarea.descripcion">
+
+    
+
+    <button class="btn-guardar" (click)="guardarTarea()">
+
+      Guardar
+
+    </button>
+
+    <button class="btn-cancelar" (click)="mostrarFormulario = false">
+
+      CERRAR
+
+    </button>
+
+  </div>
+
+</div>

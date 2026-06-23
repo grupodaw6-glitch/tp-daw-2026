@@ -8,22 +8,22 @@ import { DashboardComponent } from './dashboard/dashboard';
 export const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   },
   {
     path: 'proyectos',
-    component: ProyectosComponent
+    component: ProyectosComponent,
   },
   {
     path: 'clientes',
-    component: ClientesComponent
+    component: ClientesComponent,
   },
   {
-    path: 'tareas',
-    component: TareasComponent
+    path: 'proyectos/:idProyecto/tareas',
+    component: TareasComponent,
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
-  }
+    component: DashboardComponent,
+  },
 ];

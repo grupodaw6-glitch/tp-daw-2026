@@ -1,26 +1,44 @@
+<nav class="navbar">
+
+    <button routerLink="/dashboard">
+         Dashboard
+    </button>
+
+    <button routerLink="/proyectos">
+         Proyectos
+    </button>
+
+    <button routerLink="/clientes">
+         Clientes
+    </button>
+<button class="logout" (click)="logout()">
+     Salir
+</button>
+</nav>
+
 <div class="dashboard-container">
 
     <div class="topbar">
         <h2>Sistema de Gestión de Proyectos</h2>
-        <span>Usuario autenticado</span>
+        <span>Usuario  verificado</span>
     </div>
 
     <h1>Panel Principal</h1>
 
-    <p>Seleccione una opción para administrar el sistema</p>
+    <p>OPCIONES DE ADMINISTRADOR</p>
 
     <div class="menu">
 
         <button routerLink="/clientes">
-            👥 Clientes
+            Clientes
         </button>
 
         <button routerLink="/proyectos">
-            📁 Proyectos
+         Proyectos
         </button>
 
         <button routerLink="/tareas">
-            ✅ Tareas
+            Tareas
         </button>
 
     </div>

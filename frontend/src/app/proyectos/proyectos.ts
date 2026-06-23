@@ -1,12 +1,16 @@
+import { Router } from '@angular/router';
+
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProyectosService } from '../services/proyectos';
 import { TareasService } from '../services/tareas';
+import { RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-proyectos',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './proyectos.html',
   styleUrl: './proyectos.css',
 })
@@ -30,10 +34,18 @@ export class ProyectosComponent implements OnInit {
     idCliente: null as number | null,
   };
 
-  constructor(private proyectosService: ProyectosService) {}
+  constructor(
+    private proyectosService: ProyectosService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.cargarProyectos();
+  }
+  logout(): void {
+    localStorage.removeItem('token');
+
+    this.router.navigate(['/']);
   }
 
   cargarProyectos(): void {
@@ -92,6 +104,13 @@ export class ProyectosComponent implements OnInit {
 
     this.mostrarFormulario = true;
   }
+  
+
+  abrirTareas(idProyecto: number): void {
+    console.log('ID RECIBIDO:', idProyecto);
+
+    this.router.navigate(['/proyectos', idProyecto, 'tareas']);
+  }
 
   guardarProyecto(): void {
     if (!this.nuevoProyecto.nombre) {
@@ -128,15 +147,14 @@ export class ProyectosComponent implements OnInit {
         error: (err: any) => {
           console.error(err);
 
-          
-  alert(JSON.stringify(err.error));
+          alert(JSON.stringify(err.error));
         },
       });
     }
   }
 
   eliminarProyecto(id: number): void {
-    if (!confirm('¿Desea eliminar el proyecto?')) {
+    if (!confirm('¿ELIMINAR PROYECTO?')) {
       return;
     }
 
