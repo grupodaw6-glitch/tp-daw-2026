@@ -6,7 +6,6 @@ import { TareasService } from '../services/tareas';
 import { ProyectosService } from '../services/proyectos';
 import { Router } from '@angular/router';
 import { RouterLink } from '@angular/router';
-
 @Component({
   selector: 'app-tareas',
   standalone: true,

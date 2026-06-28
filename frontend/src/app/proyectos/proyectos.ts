@@ -43,7 +43,6 @@ export class ProyectosComponent implements OnInit {
   ngOnInit(): void {
     this.cargarProyectos();
   }
-
   logout(): void {
     localStorage.removeItem('token');
 
