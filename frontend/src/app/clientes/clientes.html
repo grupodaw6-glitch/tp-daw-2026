@@ -1,0 +1,79 @@
+<nav class="navbar">
+  <button routerLink="/dashboard">Dashboard</button>
+
+  <button routerLink="/proyectos">Proyectos</button>
+
+  <button routerLink="/clientes">Clientes</button>
+  <button class="logout" (click)="logout()">Salir</button>
+</nav>
+<div class="clientes-container">
+  <div class="header-clientes">
+    <h2>Gestión de Clientes</h2>
+
+    <button class="btn-nuevo" (click)="mostrarFormularioNuevo()">+ Nuevo Cliente</button>
+  </div>
+
+  <input
+    class="buscador"
+    type="text"
+    placeholder="Buscar cliente"
+    [(ngModel)]="busquedaCliente"
+    (input)="filtrarClientes()"
+  />
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let cliente of clientesFiltrados">
+        <td>{{ cliente.id }}</td>
+
+        <td>{{ cliente.nombre }}</td>
+
+        <td>
+          <span
+            [class.estado-activo]="cliente.estado === 'ACTIVO'"
+            [class.estado-baja]="cliente.estado === 'BAJA'"
+          >
+            {{ cliente.estado }}
+          </span>
+        </td>
+
+        <td>
+          <button class="btn-editar" (click)="editarCliente(cliente.id)">Editar</button>
+
+          <button class="btn-eliminar" (click)="darBaja(cliente.id)">Baja</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MODAL -->
+
+<div *ngIf="mostrarFormulario" class="modal">
+  <div class="formulario">
+    <h2>
+      {{ editando ? 'Editar Cliente' : 'Nuevo Cliente' }}
+    </h2>
+
+    <input type="text" placeholder="Nombre" [(ngModel)]="nuevoCliente.nombre" />
+
+    <input type="text" placeholder="Teléfono" [(ngModel)]="nuevoCliente.telefono" />
+
+    <input type="email" placeholder="Mail" [(ngModel)]="nuevoCliente.mail" />
+
+    <div class="botones-form">
+      <button class="btn-guardar" (click)="guardarCliente()">Guardar</button>
+
+      <button class="btn-cancelar" (click)="mostrarFormulario = false">Cancelar</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+.navbar {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+
+  background: #1e293b;
+  padding: 15px 20px;
+
+  margin-bottom: 25px;
+
+  border-radius: 10px;
+}
+
+.navbar button {
+  border: none;
+  background: transparent;
+
+  color: white;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 10px 15px;
+
+  border-radius: 8px;
+
+  transition: 0.3s;
+}
+
+.navbar button:hover {
+  background: #334155;
+}
+
+.logout {
+  margin-left: auto !important;
+  background: #dc2626 !important;
+}
+
+.logout:hover {
+  background: #b91c1c !important;
+}
