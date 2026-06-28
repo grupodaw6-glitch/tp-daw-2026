@@ -71,6 +71,7 @@ export class ProyectosComponent implements OnInit {
   verDetalle(id: number): void {
     this.proyectosService.findOne(id).subscribe((data) => {
       this.proyectoSeleccionado = data;
+      this.cdr.detectChanges();
     });
   }
 
