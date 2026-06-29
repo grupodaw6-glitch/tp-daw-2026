@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ClientesService } from '../services/clientes';
@@ -31,6 +31,7 @@ export class ClientesComponent implements OnInit {
   constructor(
     private clientesService: ClientesService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +47,7 @@ export class ClientesComponent implements OnInit {
     this.clientesService.findAll().subscribe((data: any) => {
       this.clientes = data;
       this.clientesFiltrados = data;
+      this.cdr.detectChanges();
     });
   }
 
@@ -136,5 +138,4 @@ export class ClientesComponent implements OnInit {
   darBaja(id: number): void {
     alert('Dar de baja cliente ' + id);
   }
-  
 }

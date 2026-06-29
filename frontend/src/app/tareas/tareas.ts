@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -37,16 +37,24 @@ export class TareasComponent implements OnInit {
     private proyectosService: ProyectosService,
     private route: ActivatedRoute,
     private router: Router,
+    private cdRef: ChangeDetectorRef,
   ) {}
+
   ngOnInit(): void {
     console.log(this.route.snapshot.params);
+    const idParam = this.route.snapshot.params['idProyecto'];
 
-    this.idProyecto = Number(this.route.snapshot.params['idProyecto']);
-
-    console.log('ESTE ES EL ID DEL PROYECTO:', this.idProyecto);
-
-    this.cargarTareas();
+    if (idParam && idParam !== '0') {
+      this.idProyecto = Number(idParam);
+      console.log('ESTE ES EL ID DEL PROYECTO:', this.idProyecto);
+      this.cargarTareas();
+    } else {
+      this.idProyecto = 0;
+      console.log('ENTRANDO DESDE EL PANEL GENERAL DE TAREAS');
+      this.cargarTodasLasTareasGlobales();
+    }
   }
+
   logout(): void {
     localStorage.removeItem('token');
 
@@ -65,8 +73,23 @@ export class TareasComponent implements OnInit {
         console.log('TAREAS', this.tareas);
 
         this.tareasFiltradas = this.tareas;
+        this.cdRef.detectChanges();
       },
 
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
+
+  cargarTodasLasTareasGlobales(): void {
+    this.tareasService.findAllGlobal().subscribe({
+      next: (data: any) => {
+        console.log('RESPUESTA TODAS LAS TAREAS GLOBAL', data);
+        this.tareas = data || [];
+        this.tareasFiltradas = this.tareas;
+        this.cdRef.detectChanges();
+      },
       error: (err) => {
         console.error(err);
       },
@@ -114,7 +137,6 @@ export class TareasComponent implements OnInit {
   guardarTarea(): void {
     if (!this.nuevaTarea.descripcion) {
       alert('Ingrese una tarea buscar descripción');
-
       return;
     }
 
@@ -122,15 +144,15 @@ export class TareasComponent implements OnInit {
       this.tareasService.update(this.idProyecto, this.idEditando, this.nuevaTarea).subscribe({
         next: () => {
           alert('Tarea actualizada');
-
-          this.cargarTareas();
-
+          if (this.idProyecto !== 0) {
+            this.cargarTareas();
+          } else {
+            this.cargarTodasLasTareasGlobales();
+          }
           this.mostrarFormulario = false;
         },
-
         error: (err: any) => {
           console.error(err);
-
           alert('Error al actualizar');
         },
       });
@@ -138,15 +160,11 @@ export class TareasComponent implements OnInit {
       this.tareasService.create(this.idProyecto, this.nuevaTarea).subscribe({
         next: () => {
           alert('Tarea creada');
-
           this.cargarTareas();
-
           this.mostrarFormulario = false;
         },
-
         error: (err: any) => {
           console.error(err);
-
           alert('No se pudo crear, vuelva a intentar');
         },
       });

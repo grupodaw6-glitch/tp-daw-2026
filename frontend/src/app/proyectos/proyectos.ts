@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ProyectosService } from '../services/proyectos';
@@ -15,6 +14,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './proyectos.css',
 })
 export class ProyectosComponent implements OnInit {
+  
   busquedaProyecto: string = '';
 
   proyectos: any[] = [];
@@ -37,6 +37,7 @@ export class ProyectosComponent implements OnInit {
   constructor(
     private proyectosService: ProyectosService,
     private router: Router,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -51,8 +52,8 @@ export class ProyectosComponent implements OnInit {
   cargarProyectos(): void {
     this.proyectosService.findAll().subscribe((data) => {
       this.proyectos = data;
-
       this.proyectosFiltrados = data;
+      this.cdr.detectChanges();
     });
   }
 
@@ -70,6 +71,7 @@ export class ProyectosComponent implements OnInit {
   verDetalle(id: number): void {
     this.proyectosService.findOne(id).subscribe((data) => {
       this.proyectoSeleccionado = data;
+      this.cdr.detectChanges();
     });
   }
 
@@ -104,7 +106,6 @@ export class ProyectosComponent implements OnInit {
 
     this.mostrarFormulario = true;
   }
-  
 
   abrirTareas(idProyecto: number): void {
     console.log('ID RECIBIDO:', idProyecto);

@@ -18,6 +18,10 @@ lerna-debug.log*
 # Tests
 /coverage
 /.nyc_output
+#joa
+test*
+.google*
+*.parquet
 
 # IDEs and editors
 /.idea

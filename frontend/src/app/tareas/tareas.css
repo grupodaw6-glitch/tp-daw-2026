@@ -6,8 +6,8 @@
 }
 
 /* Buscador */
-input[type="text"],
-input[type="email"],
+input[type='text'],
+input[type='email'],
 select {
   width: 100%;
   padding: 10px;
@@ -100,19 +100,15 @@ tr:hover {
   background-color: #219150;
 }
 
-.btn-cancelar{
-
-
- background-color: #02190b;
+.btn-cancelar {
+  background-color: #02190b;
   color: rgb(247, 241, 241);
   border: none;
-margin:5px;
+  margin: 5px;
   padding: 10px 12px;
   border-radius: 6px;
   cursor: pointer;
   width: 38%;
-
-
 }
 
 /* Modal */

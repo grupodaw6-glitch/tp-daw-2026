@@ -1,61 +1,41 @@
+<<<<<<< HEAD
  <nav class="navbar">
+=======
+<nav class="navbar">
+  <button routerLink="/dashboard">Dashboard</button>
+>>>>>>> 999c093422387bc6fddc583d3ec5ce046da0dae3
 
-    <button routerLink="/dashboard">
-         Dashboard
-    </button>
+  <button routerLink="/proyectos">Proyectos</button>
 
-    <button routerLink="/proyectos">
-         Proyectos
-    </button>
-
-    <button routerLink="/clientes">
-         Clientes
-    </button>
-<button class="logout" (click)="logout()">
-     Salir
-</button>
+  <button routerLink="/clientes">Clientes</button>
+  <button class="logout" (click)="logout()">Salir</button>
 </nav>
 
 <div class="dashboard-container">
+  <div class="topbar">
+    <h2>Sistema de Gestión de Proyectos</h2>
+    <span>Usuario verificado</span>
+  </div>
 
-    <div class="topbar">
-        <h2>Sistema de Gestión de Proyectos</h2>
-        <span>Usuario  verificado</span>
-    </div>
+  <h1>Panel Principal</h1>
 
-    <h1>Panel Principal</h1>
+  <p>OPCIONES DE ADMINISTRADOR</p>
 
-    <p>OPCIONES DE ADMINISTRADOR</p>
+  <div class="menu">
+    <button routerLink="/clientes">Clientes</button>
 
-    <div class="menu">
+    <button routerLink="/proyectos">Proyectos</button>
 
-        <button routerLink="/clientes">
-            Clientes
-        </button>
+    <button routerLink="/proyectos/0/tareas">Tareas</button>
+  </div>
 
-        <button routerLink="/proyectos">
-         Proyectos
-        </button>
+  <div class="acciones">
+    <button class="pdf-btn" (click)="exportarProyectosAPDF()">Exportar PDF</button>
 
-        <button routerLink="/tareas">
-            Tareas
-        </button>
-
-    </div>
-
-    <div class="acciones">
-
-        <button class="pdf-btn" (click)="exportarProyectosAPDF()">
-            Exportar PDF
-        </button>
-
-        <button class="logout-btn" (click)="logout()">
-            Cerrar sesión
-        </button>
-
-    </div>
-
+    <button class="logout-btn" (click)="logout()">Cerrar sesión</button>
+  </div>
 </div>
+<<<<<<< HEAD
 
 <div class="estadisticas">
 
@@ -83,3 +63,5 @@
 
 
 
+=======
+>>>>>>> 999c093422387bc6fddc583d3ec5ce046da0dae3

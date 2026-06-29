@@ -1,15 +1,20 @@
-import { InjectRepository } from "@nestjs/typeorm";
-import { CreateProyectoDto } from "../dtos/input/create-proyecto.dto";
-import { Proyecto } from "../entities/proyecto.entity";
-import { Repository, In } from "typeorm";
-import { EstadosProyectosEnum } from "../enums/estados-proyectos.enum";
-import { UpdateProyectoDto } from "../dtos/input/update-proyecto.dto";
-import { BadRequestException, forwardRef, Inject, Injectable } from "@nestjs/common";
-import { ListProyectoDTO } from "../dtos/output/list-proyecto.dto";
-import { ProyectoDTO } from "../dtos/output/proyecto.dto";
-import { ListTareaDTO } from "../dtos/output/list-tareas.dto";
-import { ClientesService } from "./clientes.service";
-import { ListClienteDTO } from "../dtos/output/list-cliente.dto";
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateProyectoDto } from '../dtos/input/create-proyecto.dto';
+import { Proyecto } from '../entities/proyecto.entity';
+import { Repository, In } from 'typeorm';
+import { EstadosProyectosEnum } from '../enums/estados-proyectos.enum';
+import { UpdateProyectoDto } from '../dtos/input/update-proyecto.dto';
+import {
+  BadRequestException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
+import { ListProyectoDTO } from '../dtos/output/list-proyecto.dto';
+import { ProyectoDTO } from '../dtos/output/proyecto.dto';
+import { ListTareaDTO } from '../dtos/output/list-tareas.dto';
+import { ClientesService } from './clientes.service';
+import { ListClienteDTO } from '../dtos/output/list-cliente.dto';
 
 @Injectable()
 export class ProyectosService {

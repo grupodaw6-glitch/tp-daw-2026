@@ -1,29 +1,18 @@
-
 <nav class="navbar">
+  <button routerLink="/dashboard">Dashboard</button>
 
-  <button routerLink="/dashboard">
-     Dashboard
-  </button>
+  <button routerLink="/proyectos">Proyectos</button>
 
-  <button routerLink="/proyectos">
-     Proyectos
-  </button>
-
-  <button routerLink="/clientes">
-     Clientes
-  </button>
-<button class="logout" (click)="logout()">
-   Salir
-</button>
+  <button routerLink="/clientes">Clientes</button>
+  <button class="logout" (click)="logout()">Salir</button>
 </nav>
 <input
-type="text"
-placeholder="Buscar tarea por descripción, estado o proyecto"
-[(ngModel)]="busquedaTarea"
-(input)="filtrarTareas()"
+  type="text"
+  placeholder="Buscar tarea por descripción, estado o proyecto"
+  [(ngModel)]="busquedaTarea"
+  (input)="filtrarTareas()"
 />
 <table>
-
   <tr>
     <th>ID</th>
     <th>Descripción</th>
@@ -33,7 +22,6 @@ placeholder="Buscar tarea por descripción, estado o proyecto"
   </tr>
 
   <tr *ngFor="let tarea of tareasFiltradas">
-
     <td>{{ tarea.id }}</td>
 
     <td>{{ tarea.descripcion }}</td>
@@ -43,54 +31,29 @@ placeholder="Buscar tarea por descripción, estado o proyecto"
     <td>{{ tarea.proyecto?.nombre }}</td>
 
     <td>
-
-      <button class="btn-editar" (click)="editarTarea(tarea.id)">
-
+      <button *ngIf="idProyecto !== 0" class="btn-editar" (click)="editarTarea(tarea.id)">
         Editar
-
       </button>
 
-      <button class="btn-eliminar" (click)="eliminarTarea(tarea.id)">
-
+      <button *ngIf="idProyecto !== 0" class="btn-eliminar" (click)="eliminarTarea(tarea.id)">
         Baja
-
       </button>
-
     </td>
-
   </tr>
-
 </table>
 
-<button class="btn-nuevo" (click)="mostrarFormularioNuevo()">
+<button *ngIf="idProyecto !== 0" (click)="mostrarFormularioNuevo()">Nueva Tarea</button>
 
-  Nueva Tarea
-
-</button>
 <div *ngIf="mostrarFormulario" class="modal">
-
   <div class="modal-content">
-
     <h2>
       {{ editando ? 'Editar Tarea' : 'Nueva Tarea' }}
     </h2>
 
-    <input type="text" placeholder="Descripción" [(ngModel)]="nuevaTarea.descripcion">
+    <input type="text" placeholder="Descripción" [(ngModel)]="nuevaTarea.descripcion" />
 
-    
+    <button class="btn-guardar" (click)="guardarTarea()">Guardar</button>
 
-    <button class="btn-guardar" (click)="guardarTarea()">
-
-      Guardar
-
-    </button>
-
-    <button class="btn-cancelar" (click)="mostrarFormulario = false">
-
-      CERRAR
-
-    </button>
-
+    <button class="btn-cancelar" (click)="mostrarFormulario = false">CERRAR</button>
   </div>
-
 </div>

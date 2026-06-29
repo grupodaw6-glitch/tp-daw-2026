@@ -1,41 +1,27 @@
-
-
-
 <nav class="navbar">
+  <button routerLink="/dashboard">Dashboard</button>
 
-  <button routerLink="/dashboard">
-    Dashboard
-  </button>
+  <button routerLink="/proyectos">Proyectos</button>
 
-  <button routerLink="/proyectos">
-   Proyectos
-  </button>
-
-  <button routerLink="/clientes">
-   Clientes
-  </button>
-<button class="logout" (click)="logout()">
-  Salir
-</button>
+  <button routerLink="/clientes">Clientes</button>
+  <button class="logout" (click)="logout()">Salir</button>
 </nav>
 
 <div class="proyectos-container">
-
   <h1>Gestión de Proyectos</h1>
 
   <div class="acciones-superiores">
-
-    <button class="btn-nuevo" (click)="mostrarFormularioNuevo()">
-      Crear Proyecto
-    </button>
-
+    <button class="btn-nuevo" (click)="mostrarFormularioNuevo()">Crear Proyecto</button>
   </div>
 
-  <input type="text" placeholder="Buscar proyecto por nombre, estado o cliente" [(ngModel)]="busquedaProyecto"
-    (input)="filtrarProyectos()" />
+  <input
+    type="text"
+    placeholder="Buscar proyecto por nombre, estado o cliente"
+    [(ngModel)]="busquedaProyecto"
+    (input)="filtrarProyectos()"
+  />
 
   <table>
-
     <thead>
       <tr>
         <th>ID</th>
@@ -47,9 +33,7 @@
     </thead>
 
     <tbody>
-
       <tr *ngFor="let proyecto of proyectosFiltrados">
-
         <td>{{ proyecto.id }}</td>
 
         <td>{{ proyecto.nombre }}</td>
@@ -61,51 +45,31 @@
         </td>
 
         <td>
+          <button class="btn-ver" (click)="verDetalle(proyecto.id)">Ver Detalle</button>
 
-          <button class="btn-ver" (click)="verDetalle(proyecto.id)">
-            Ver Detalle
-          </button>
+          <button class="btn-editar" (click)="editarProyecto(proyecto.id)">Editar</button>
 
-          <button class="btn-editar" (click)="editarProyecto(proyecto.id)">
-            Editar
-          </button>
-
-
-
-          <button class="btn-tareas" (click)="abrirTareas(proyecto.id)">
-            Tareas
-          </button>
+          <button class="btn-tareas" (click)="abrirTareas(proyecto.id)">Tareas</button>
         </td>
-
       </tr>
-
     </tbody>
-
   </table>
 
-
   <div *ngIf="mostrarFormulario" class="detalle-card">
-
     <h2>Proyecto</h2>
 
     <input type="text" placeholder="Nombre del proyecto" [(ngModel)]="nuevoProyecto.nombre" />
 
-    <br><br>
+    <br /><br />
 
     <input type="number" placeholder="ID Cliente" [(ngModel)]="nuevoProyecto.idCliente" />
 
-    <br><br>
+    <br /><br />
 
-    <button class="btn-guardar" (click)="guardarProyecto()">
-      Guardar
-    </button>
-
+    <button class="btn-guardar" (click)="guardarProyecto()">Guardar</button>
   </div>
 
-
-
   <div *ngIf="proyectoSeleccionado" class="detalle-card">
-
     <h2>Detalle del Proyecto</h2>
 
     <p>
@@ -126,17 +90,11 @@
     <h3>Tareas</h3>
 
     <ul>
-
       <li *ngFor="let tarea of proyectoSeleccionado.tareas">
-
         {{ tarea.descripcion }}
         -
         {{ tarea.estado }}
-
       </li>
-
     </ul>
-
   </div>
-
 </div>

@@ -41,4 +41,11 @@ export class TareasController {
   async obtenerTareas(@Param('idProyecto') idProyecto: number) {
     return await this.tareasService.obtenerTareas(idProyecto);
   }
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard)
+  @Get('/todas')
+  async obtenerTodasLasTareasGlobales() {
+    return await this.tareasService.obtenerTodasLasTareas();
+}
 }

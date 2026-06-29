@@ -17,11 +17,9 @@ async function bootstrap() {
   });
   app.enableCors();
 
-
   app.useGlobalPipes(
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }),
   );
-
 
   if (process.env.SWAGGER_HABILITADO === 'true') {
     const config = new DocumentBuilder()
@@ -35,7 +33,6 @@ async function bootstrap() {
 
     SwaggerModule.setup('api/v1', app, document);
   }
-
 
   await app.listen(process.env.PORT ?? 3000);
 }

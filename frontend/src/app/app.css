@@ -16,7 +16,7 @@
   background: white;
   border-radius: 15px;
   padding: 25px;
-  box-shadow: 0 4px 12px rgba(0,0,0,.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .estado-pendiente {

@@ -1,0 +1,71 @@
+import { OnInit, ElementRef, OnDestroy } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { TemplateEditorService } from './template-editor.service';
+import { ZipExportService } from './zip-export.service';
+import { HbsRenderService } from './hbs-render.service';
+interface Template {
+    name: string;
+    path: string;
+    type: 'template' | 'partial';
+}
+interface CompoDocConfig {
+    hideGenerator?: boolean;
+    disableSourceCode?: boolean;
+    disableGraph?: boolean;
+    disableCoverage?: boolean;
+    disablePrivate?: boolean;
+    disableProtected?: boolean;
+    disableInternal?: boolean;
+    disableLifeCycleHooks?: boolean;
+    disableConstructors?: boolean;
+    disableRoutesGraph?: boolean;
+    disableSearch?: boolean;
+    disableDependencies?: boolean;
+    disableProperties?: boolean;
+    disableDomTree?: boolean;
+    disableTemplateTab?: boolean;
+    disableStyleTab?: boolean;
+    disableMainGraph?: boolean;
+    disableFilePath?: boolean;
+    disableOverview?: boolean;
+    hideDarkModeToggle?: boolean;
+    minimal?: boolean;
+    customFavicon?: string;
+    includes?: string;
+    includesName?: string;
+}
+export declare class TemplatePlaygroundComponent implements OnInit, OnDestroy {
+    private http;
+    private editorService;
+    private zipService;
+    private hbsService;
+    editorContainer: ElementRef;
+    previewFrame: ElementRef;
+    sessionId: string;
+    templates: Template[];
+    selectedFile: Template | null;
+    config: CompoDocConfig;
+    showConfigPanel: boolean;
+    saving: boolean;
+    lastSaved: Date | null;
+    private saveTimeout?;
+    private readonly SAVE_DELAY;
+    get previewUrl(): string;
+    constructor(http: HttpClient, editorService: TemplateEditorService, zipService: ZipExportService, hbsService: HbsRenderService);
+    ngOnInit(): Promise<void>;
+    ngOnDestroy(): void;
+    private createSession;
+    private loadSessionTemplates;
+    private loadSessionConfig;
+    initializeEditor(): void;
+    selectFile(template: Template): Promise<void>;
+    private scheduleAutoSave;
+    private saveTemplate;
+    updateConfig(): Promise<void>;
+    toggleConfigPanel(): void;
+    refreshPreview(): void;
+    resetToDefault(): void;
+    exportZip(): Promise<void>;
+    trackByName(index: number, item: Template): string;
+}
+export {};

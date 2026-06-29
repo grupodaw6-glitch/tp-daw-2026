@@ -1,28 +1,33 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { EstadosProyectosEnum } from "../enums/estados-proyectos.enum";
-import { Cliente } from "./cliente.entity";
-import { Tarea } from "./tarea.entity";
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { EstadosProyectosEnum } from '../enums/estados-proyectos.enum';
+import { Cliente } from './cliente.entity';
+import { Tarea } from './tarea.entity';
 
-@Entity({ name: "proyectos" })
+@Entity({ name: 'proyectos' })
 export class Proyecto {
+  @PrimaryGeneratedColumn()
+  id!: number;
 
-    @PrimaryGeneratedColumn()
-    id!: number;
+  @Column()
+  nombre!: string;
 
-    @Column()
-    nombre!: string;
+  @Column({ type: 'enum', enum: EstadosProyectosEnum })
+  estado!: EstadosProyectosEnum;
 
-    @Column({ type: 'enum', enum: EstadosProyectosEnum })
-    estado!: EstadosProyectosEnum
+  @Column({ name: 'id_cliente', nullable: true })
+  idCliente!: number | null;
 
-    @Column({ name: "id_cliente", nullable: true })
-    idCliente!: number | null;
+  @ManyToOne(() => Cliente, { nullable: true })
+  @JoinColumn({ name: 'id_cliente' })
+  cliente!: Cliente | null;
 
-    @ManyToOne(()=>Cliente, { nullable: true })
-    @JoinColumn({name: "id_cliente"})
-    cliente!: Cliente | null
-
-    @OneToMany(()=>Tarea, (tarea)=> tarea.proyecto)
-    tareas!: Tarea[]
-
+  @OneToMany(() => Tarea, (tarea) => tarea.proyecto)
+  tareas!: Tarea[];
 }

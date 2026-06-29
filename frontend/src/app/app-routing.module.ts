@@ -25,6 +25,11 @@ const routes: Routes = [
     path: 'proyectos/:idProyecto/tareas',
     component: TareasComponent,
   },
+
+  {
+    path: 'tareas',
+    component: TareasComponent,
+  },
 ];
 
 @NgModule({

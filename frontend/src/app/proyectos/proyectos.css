@@ -263,7 +263,7 @@ button {
 
   padding: 20px;
 
-  box-shadow: 0 4px 15px rgba(0, 0, 0, .08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .detalle-proyecto h3 {
@@ -282,7 +282,6 @@ button {
 /* RESPONSIVE */
 
 @media (max-width: 768px) {
-
   .header-proyectos {
     flex-direction: column;
     align-items: stretch;
@@ -297,8 +296,8 @@ button {
     width: 90%;
   }
 }
-input[type="text"],
-input[type="number"] {
+input[type='text'],
+input[type='number'] {
   width: 100%;
   max-width: 400px;
   padding: 12px;
@@ -310,8 +309,8 @@ input[type="number"] {
   background-color: #fff;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus {
+input[type='text']:focus,
+input[type='number']:focus {
   outline: none;
   border-color: #2563eb;
   box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
