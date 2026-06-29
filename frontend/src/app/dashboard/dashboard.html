@@ -1,4 +1,4 @@
-<nav class="navbar">
+ <nav class="navbar">
 
     <button routerLink="/dashboard">
          Dashboard
@@ -57,4 +57,29 @@
 
 </div>
 
- 
+<div class="estadisticas">
+
+    <div class="card">
+        <h2>{{ proyectosTotales }}</h2>
+        <p>Proyectos Totales</p>
+    </div>
+
+    <div class="card activo">
+        <h2>{{ proyectosActivos }}</h2>
+        <p>Proyectos Activos</p>
+    </div>
+
+    <div class="card finalizado">
+        <h2>{{ proyectosFinalizados }}</h2>
+        <p>Proyectos Finalizados</p>
+    </div>
+
+    <div class="card cliente">
+        <h2>{{ clientesTotales }}</h2>
+        <p>Clientes Registrados</p>
+    </div>
+
+</div>
+
+
+
